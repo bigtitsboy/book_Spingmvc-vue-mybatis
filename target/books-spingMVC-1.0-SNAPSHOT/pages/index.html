@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery-3.6.0.js"></script>
+</head>
+<body>
+index
+<form action="/books_spingMVC/book/add" method="post">
+    <p>图书名称:<input type="text" name="name"/></p>
+    <p>图书作者:<input type="text" name="author"/></p>
+    <p>图书价格:<input type="text" name="price"/></p>
+    <p><input type="submit" value="提交"/></p>
+</form>
+<button id="btn1">clickajax</button>
+
+<script type="text/javascript">
+    $("#btn1").click(function(){
+        var obj = {};
+        obj.bookName = "Python";
+        obj.bookAuthor="杰哥";
+        obj.bookPrice = 2.22;
+        var s = JSON.stringify(obj); //将对象转换成JSON格式
+        $.ajax({
+            url:"/books_spingMVC/book/list",
+            type:"post",
+            contentType:"application/json",
+            data:s, //如果data的值为json格式字符串，contentType必须设置为"application/json"
+            success:function(res){
+                console.log(res);
+            }
+        });
+    });
+</script>
+</body>
+</html>
