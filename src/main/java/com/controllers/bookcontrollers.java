@@ -7,7 +7,10 @@ import books.pojo.Student;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
+
 @CrossOrigin(origins = "*", maxAge = 3600) //通过注解的方式允许跨域
 @Controller
 @RequestMapping("/book")
@@ -21,15 +24,19 @@ public class bookcontrollers {
         System.out.println(a);
         System.out.println(b);
         System.out.println(c);
-        return "redirect:/pages/home.html";
+        return "redirect:http://localhost:8080/#/about";
 
     }
 
     @RequestMapping("/list")
-    public String listBooks(@RequestBody Book book) {
+    @ResponseBody
+    public List<Book> listBooks(@RequestBody Book book, HttpServletResponse resp) {
         System.out.println("---book list");
         System.out.println(book);
-        return "/home.html";
+        resp.setHeader("Access-Control-Allow-Origin", "*");
+        List<Book> books = new ArrayList<Book>();
+        books.add(new Book("c++", "123", "123"));
+        return books;
 //        StudentDao studentDao = MyBatisUtil.getMapper(StudentDao.class);
 //        List<Student> students = studentDao.queryStudent();
 //        for (Student t : students){
