@@ -19,5 +19,6 @@ characterEncoding=utf-8"/>
     </environments>
     <mappers>
         <mapper resource="mappers/StudentMapper.xml"/>
+        <mapper resource="mappers/BookMapper.xml"/>
     </mappers>
 </configuration>

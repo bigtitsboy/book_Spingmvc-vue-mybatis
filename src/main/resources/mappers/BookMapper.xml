@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--mapper⽂件相当于DAO接⼝的‘实现类’，namespace属性要指定实现DAO接⼝的全限定名-->
+<mapper namespace="books.dao.BookDao">
+    <insert id="insertBook">
+        insert into books(title, author, ISBN, public, pic, publicdate,sort)
+        values (#{bookName},
+                #{bookAuthor},
+                #{bookIsbn},
+                #{bookPublic},
+                #{bookPic},
+                #{bookPublicDate},
+                #{bookSort}
+                )
+    </insert>
+</mapper>

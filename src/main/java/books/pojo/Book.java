@@ -1,9 +1,6 @@
 package books.pojo;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @Data
 @AllArgsConstructor
@@ -12,5 +9,10 @@ import lombok.ToString;
 public class Book {
     private String bookName;
     private String bookAuthor;
-    private String bookPrice;
+    private String bookIsbn;
+    private String bookPublic;
+    private String bookPublicDate;
+    private String bookSort;
+    private String bookPic;
+
 }
