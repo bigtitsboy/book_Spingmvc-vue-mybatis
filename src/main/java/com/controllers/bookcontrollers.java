@@ -68,6 +68,17 @@ public class bookcontrollers {
         System.out.println(books);
         return books;
     }
+
+    @RequestMapping("/isbn")
+    @ResponseBody
+    public List<Book> queryBookByISBN(String ISBN, HttpServletResponse resp) {
+        System.out.println(ISBN);
+        resp.setHeader("Access-Control-Allow-Origin", "*");
+        BookDao bookDao = MyBatisUtil.getMapper(BookDao.class);
+        List<Book> books = bookDao.queryBookByISBN(ISBN);
+        System.out.println(books);
+        return books;
+    }
 //
 //    @RequestMapping("/list")
 //    @ResponseBody

@@ -11,5 +11,6 @@ public interface BookDao {
     public String countQuery();
     public List<Book> queryAllBook(@Param("sort") String sort);
     public List<Book> queryBookByHot(String sort);
+    public List<Book> queryBookByISBN(String ISBN);
 
 }
