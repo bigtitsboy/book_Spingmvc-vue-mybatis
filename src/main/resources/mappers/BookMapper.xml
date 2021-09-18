@@ -4,15 +4,44 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--mapper⽂件相当于DAO接⼝的‘实现类’，namespace属性要指定实现DAO接⼝的全限定名-->
 <mapper namespace="books.dao.BookDao">
+    <resultMap id="BookMap" type="books.pojo.Book">
+        <result column="title" property="bookName"/>
+        <result column="author" property="bookAuthor"/>
+        <result column="ISBN" property="bookIsbn"/>
+        <result column="public" property="bookPublic"/>
+        <result column="publicdate" property="bookPublicDate"/>
+        <result column="pic" property="bookPic"/>
+        <result column="sort" property="bookSort"/>
+    </resultMap>
+
+    <select id="countQuery" resultType="String">
+        SELECT COUNT(*)
+        FROM books
+    </select>
+
+    <select id="queryAllBook" parameterType="java.lang.String" resultMap="BookMap">
+        SELECT *
+        FROM books
+        where 1 = 1
+        <if test="sort != '全部'">
+            and sort = '${sort}'
+        </if>
+    </select>
+
+    <select id="queryBookByHot" resultMap="BookMap">
+        SELECT *
+        FROM books
+        where sort = #{key} LIMIT 0,7
+    </select>
+
     <insert id="insertBook">
-        insert into books(title, author, ISBN, public, pic, publicdate,sort)
+        insert into books(title, author, ISBN, public, pic, publicdate, sort)
         values (#{bookName},
                 #{bookAuthor},
                 #{bookIsbn},
                 #{bookPublic},
                 #{bookPic},
                 #{bookPublicDate},
-                #{bookSort}
-                )
+                #{bookSort})
     </insert>
 </mapper>
