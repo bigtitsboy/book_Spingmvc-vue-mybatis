@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--mapper⽂件相当于DAO接⼝的‘实现类’，namespace属性要指定`实现`DAO接⼝的全限定名-->
+<mapper namespace="books.dao.LoginDao">
+    <resultMap id="UserMap" type="books.pojo.User">
+        <result column="account" property="account"></result>
+        <result column="upwd" property="upwd"></result>
+    </resultMap>
+
+    <insert id="insertUser">
+        insert into login_user(account, upwd)
+        values (#{account}, #{upwd})
+    </insert>
+
+    <select id="loginCheck" resultMap="UserMap">
+        SELECT *
+        FROM login_user
+        WHERE account = #{account}
+          and upwd = #{upwd}
+    </select>
+
+    <select id="accountexit" resultMap="UserMap">
+        SELECT *
+        FROM login_user
+        WHERE account = #{account}
+    </select>
+</mapper>
