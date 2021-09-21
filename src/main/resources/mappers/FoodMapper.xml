@@ -5,11 +5,18 @@
 <!--mapper⽂件相当于DAO接⼝的‘实现类’，namespace属性要指定`实现`DAO接⼝的全限定名-->
 <mapper namespace="books.dao.FoodDao">
     <resultMap id="FoodMap" type="books.pojo.Food">
-
+        <result column="foodname" property="foodname"></result>
+        <result column="price" property="price"></result>
+        <result column="pic" property="foodpic"></result>
     </resultMap>
 
     <insert id="insertFood">
-        INSERT INTO foods(foodname,price,pic)
-        VALUES(#{foodname},#{price},#{foodpic})
+        INSERT INTO foods(foodname, price, pic)
+        VALUES (#{foodname}, #{price}, #{foodpic})
     </insert>
+
+    <select id="queryAllFood" resultMap="FoodMap">
+        SELECT *
+        FROM foods
+    </select>
 </mapper>

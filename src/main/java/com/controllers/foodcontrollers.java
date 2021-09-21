@@ -8,11 +8,14 @@ import books.pojo.Food;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600) //通过注解的方式允许跨域
 @Controller
@@ -42,5 +45,15 @@ public class foodcontrollers {
         FoodDao foodDao = MyBatisUtil.getMapper(FoodDao.class);
         foodDao.insertFood(food);
         return "redirect:/pages/index.html";
+    }
+
+    @RequestMapping("/all")
+    @ResponseBody
+    public List<Food> queryAllFood(HttpServletResponse resp){
+        resp.setHeader("Access-Control-Allow-Origin", "*");
+        FoodDao foodDao = MyBatisUtil.getMapper(FoodDao.class);
+        List<Food> foods = foodDao.queryAllFood();
+        System.out.println(foods);
+        return foods;
     }
 }
