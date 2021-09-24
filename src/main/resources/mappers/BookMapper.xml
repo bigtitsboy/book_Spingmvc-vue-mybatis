@@ -15,7 +15,9 @@
     </resultMap>
 
     <select id="queryBookByISBN" resultMap="BookMap">
-        SELECT * FROM books WHERE ISBN = #{ISBN}
+        SELECT *
+        FROM books
+        WHERE ISBN = #{ISBN}
     </select>
 
     <select id="countQuery" resultType="String">
@@ -48,4 +50,14 @@
                 #{bookPublicDate},
                 #{bookSort})
     </insert>
+
+    <update id="EditBook">
+        UPDATE books
+        set title=#{bookName},
+            author=#{bookAuthor},
+            public=#{bookPublic},
+            publicdate=#{bookPublicDate},
+            sort=#{bookSort}
+        WHERE ISBN = #{bookIsbn}
+    </update>
 </mapper>

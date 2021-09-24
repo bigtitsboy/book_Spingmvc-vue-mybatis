@@ -22,5 +22,6 @@ characterEncoding=utf-8"/>
         <mapper resource="mappers/BookMapper.xml"/>
         <mapper resource="mappers/UserMapper.xml"/>
         <mapper resource="mappers/FoodMapper.xml"/>
+        <mapper resource="mappers/SitMapper.xml"/>
     </mappers>
 </configuration>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--mapper⽂件相当于DAO接⼝的‘实现类’，namespace属性要指定`实现`DAO接⼝的全限定名-->
+<mapper namespace="books.dao.SitDao">
+    <resultMap id="SitMap" type="books.pojo.Sit">
+        <id column="sid" property="sid"></id>
+        <result column="seat" property="seat"></result>
+        <result column="sign" property="sign"></result>
+    </resultMap>
+
+    <insert id="insertSeat">
+        INSERT into order_sit(seat)
+        VALUES (#{seat})
+    </insert>
+
+    <select id="querySit" resultMap="SitMap" resultType="books.pojo.Sit" useCache="false">
+        select *
+        FROM order_sit
+    </select>
+    <update id="orderSeat">
+        UPDATE order_sit
+        SET sign='true'
+        WHERE seat = #{situpdate}
+    </update>
+
+    <update id="updateSeat">
+        UPDATE order_sit
+        SET sign=#{sign}
+        WHERE seat = #{seat}
+    </update>
+
+</mapper>

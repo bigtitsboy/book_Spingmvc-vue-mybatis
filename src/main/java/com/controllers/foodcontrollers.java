@@ -5,6 +5,7 @@ import books.dao.BookDao;
 import books.dao.FoodDao;
 import books.pojo.Book;
 import books.pojo.Food;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,13 +48,20 @@ public class foodcontrollers {
         return "redirect:/pages/index.html";
     }
 
+    @RequestMapping("/edit")
+    public String editFood(Food food, HttpServletResponse resp) {
+        FoodDao foodDao = MyBatisUtil.getMapper(FoodDao.class);
+        foodDao.editFood(food);
+        return "redirect:http://localhost:8080/#/home/food";
+//        System.out.println(food);
+    }
+
     @RequestMapping("/all")
     @ResponseBody
-    public List<Food> queryAllFood(HttpServletResponse resp){
+    public List<Food> queryAllFood(HttpServletResponse resp) {
         resp.setHeader("Access-Control-Allow-Origin", "*");
         FoodDao foodDao = MyBatisUtil.getMapper(FoodDao.class);
         List<Food> foods = foodDao.queryAllFood();
-        System.out.println(foods);
         return foods;
     }
 }

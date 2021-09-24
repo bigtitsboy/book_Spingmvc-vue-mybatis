@@ -15,8 +15,14 @@
         VALUES (#{foodname}, #{price}, #{foodpic})
     </insert>
 
-    <select id="queryAllFood" resultMap="FoodMap">
-        SELECT *
+    <select id="queryAllFood" resultMap="FoodMap" useCache="false">
+        SELECT foodname, price, pic
         FROM foods
     </select>
+
+    <update id="editFood">
+        UPDATE foods
+        set price=#{price}
+        WHERE foodname = #{foodname}
+    </update>
 </mapper>

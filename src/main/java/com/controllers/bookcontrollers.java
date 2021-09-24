@@ -46,10 +46,19 @@ public class bookcontrollers {
         bookDao.insertBook(book);
     }
 
+    @RequestMapping("/edit")
+    public String EditBook(Book book, HttpServletResponse resp) {
+        resp.setHeader("Access-Control-Allow-Origin", "*");
+        BookDao bookDao = MyBatisUtil.getMapper(BookDao.class);
+        bookDao.EditBook(book);
+        return "redirect:http://localhost:8080/#/home/book?ISBN=" + book.getBookIsbn();
+//        System.out.println(book);
+    }
+
 
     @RequestMapping("/all")
     @ResponseBody
-    public List<Book> queryAllBook(String sort,HttpServletResponse resp, Model model){
+    public List<Book> queryAllBook(String sort, HttpServletResponse resp, Model model) {
         resp.setHeader("Access-Control-Allow-Origin", "*");
         System.out.println(sort);
         BookDao bookDao = MyBatisUtil.getMapper(BookDao.class);
