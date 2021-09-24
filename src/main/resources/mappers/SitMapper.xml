@@ -15,7 +15,7 @@
         VALUES (#{seat})
     </insert>
 
-    <select id="querySit" resultMap="SitMap" resultType="books.pojo.Sit" useCache="false">
+    <select id="querySit" resultMap="SitMap" resultType="books.pojo.Sit" >
         select *
         FROM order_sit
     </select>

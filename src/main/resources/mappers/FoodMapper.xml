@@ -15,7 +15,7 @@
         VALUES (#{foodname}, #{price}, #{foodpic})
     </insert>
 
-    <select id="queryAllFood" resultMap="FoodMap" useCache="false">
+    <select id="queryAllFood" resultMap="FoodMap" >
         SELECT foodname, price, pic
         FROM foods
     </select>
